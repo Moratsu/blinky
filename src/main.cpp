@@ -2,12 +2,34 @@
 #include <bn_backdrop.h>
 #include <bn_color.h>
 #include <bn_core.h>
+#include <bn_keypad.h>
 
 int main() {
     bn::core::init();
     bn::backdrop::set_color(bn::color(20,31,0));
 
     while(true) {
+        if (bn::keypad::a_pressed()) {
+            bn::backdrop::set_color(bn::color(20, 0,20));
+        }
+        if (bn::keypad::b_pressed()) {
+            bn::backdrop::set_color(bn::color(1,21,25));
+        }
+
+        if (bn::keypad::l_held()) {
+            bn::backdrop::set_color(bn::color(0,0,0));
+        }
+        else if (bn::keypad::l_released()) {
+            bn::backdrop::set_color(bn::color(31,31,31));
+        }
+
+        if (bn::keypad::r_held()) {
+            bn::backdrop::set_color(bn::color(31,0,0));
+        }
+        else if (bn::keypad::r_released()) {
+            bn::backdrop::set_color(bn::color(0,0,31));
+        }
+
         bn::core::update();
     }
 }
